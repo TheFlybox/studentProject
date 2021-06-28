@@ -1,0 +1,140 @@
+<div class="container p-4">
+  <div class="columns">
+    <div class="column is-two-fifths">
+      <h1 class="title">{{formTitle || "Create a student"}}</h1>
+      <h2 class="subtitle">Please fill the form</h2>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="field">
+          <label class="label">Firstname</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Insert the firstname" formControlName="firstname">
+          </div>
+          <p class="help">Example: Susan</p>
+        </div>
+        <div class="field">
+          <label class="label">Lastname</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Insert the lastname" formControlName="lastname">
+          </div>
+          <p class="help">Example: Brown</p>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label class="label">Sex</label>
+              <div class="control is-expanded">
+                <div class="select is-fullwidth">
+                  <select formControlName="sex">
+                    <option hidden>Select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                </div>
+              </div>
+            </div>            
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">Age</label>
+              <div class="control is-expanded">
+                <div class="select is-fullwidth">
+                  <select formControlName="age">
+                    <option hidden>Select</option>
+                    <option *ngFor="let age of ageArray" [value]="age">{{age}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>          
+        </div>
+        <div class="field">
+          <label class="label">Biography (TXT, PDF, WORD)</label>
+          <div class="file has-name is-boxed">
+            <label class="file-label">
+              <input class="file-input" type="file" name="resume" (change)="changeFileName($event)" accept=
+"application/msword, text/plain, application/pdf">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="ti ti-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose a file…
+                </span>
+              </span>
+              <span class="file-name">
+                {{fileNameToUpload}}
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="columns mt-2">
+          <div class="column">
+            <button type="button" class="button is-success is-fullwidth" (click)="onSubmit()">
+              <span class="icon">
+                <i class="ti ti-checks"></i>
+              </span>
+              <span>Save</span>
+            </button>
+          </div>
+          <div class="column">
+            <button type="button" class="button is-danger is-fullwidth" (click)="goBack()">
+              <span class="icon">
+                <i class="ti ti-x"></i>
+              </span>
+              <span>Cancel</span>
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="mt-6" [ngClass]="{'hidden' : !isCreate}">
+        <label class="label">Upload a list of students</label>
+        <a class="button is-link mt-1" routerLink="upload">
+          <span class="icon">
+            <i class="ti ti-upload"></i>
+          </span>
+          <span>XML Bulk Upload</span>
+        </a>
+      </div>
+    </div>
+    <div class="column is-2"></div>
+    <div class="column">
+      <div class="pt-6 pr-6">
+        <div class="block">
+          <div class="is-flex is-align-items-center mb-2">
+            <i class="ti ti-bulb is-size-3 mr-3 has-text-link"></i>
+            <span class="is-size-4 has-text-weight-bold has-text-grey">Simple</span>
+          </div>    
+          <span class="has-text-grey ml-5 pl-4 is-block">
+            it's so simple that a <strong>baby</strong> can handle students here.
+          </span>      
+        </div>
+      </div>
+      <div class="pt-6 pr-6">
+        <div class="block">
+          <div class="is-flex is-align-items-center mb-2">
+            <i class="ti ti-clock is-size-3 mr-3 has-text-link"></i>
+            <span class="is-size-4 has-text-weight-bold has-text-grey">Quick</span>            
+          </div>  
+          <span class="has-text-grey ml-5 pl-4 is-block">This application is super fast, so much that it can be compared to the <strong>speed of light</strong>.</span>        
+        </div>
+      </div>
+      <div class="pt-6 pr-6">
+        <div class="block">
+          <div class="is-flex is-align-items-center mb-2">
+            <i class="ti ti-crown is-size-3 mr-3 has-text-link"></i>
+            <span class="is-size-4 has-text-weight-bold has-text-grey">Elegance</span>            
+          </div>  
+          <span class="has-text-grey ml-5 pl-4 is-block">A design that gives you satisfaction because we all know that without a little <strong>style</strong> there is no enjoyment.</span>        
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<br />
+<div class="container">
+  <div class="notification is-success mb-4" [ngClass]="{'hidden' : processCompleted}">
+    <button class="delete"></button>
+    <i class="ti ti-checks"></i> Operation completed successfully!
+  </div>
+</div>

@@ -1,0 +1,7 @@
+.toggler span{
+  pointer-events: none;
+}
+
+.hidden{
+  display: none !important;
+}

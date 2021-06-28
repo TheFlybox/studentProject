@@ -1,0 +1,50 @@
+<div class="container p-4">
+  <h1 class="title">Student List</h1>
+  <h2 class="subtitle">The details of all students</h2>
+
+  <div class="columns">
+    <div class="column is-two-thirds">
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <input class="input" type="text" placeholder="Find a student" (input)="changeEverything($event)">
+        </div>
+        <div class="control">
+          <a class="button is-link">
+            <span class="icon is-small">
+              <i class="ti ti-search"></i>
+            </span>
+            <span>Search</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="is-flex">
+        <div class="ml-auto">
+          <a class="button is-link" routerLink="create" [state]="{student: null, isCreate: true}">
+            <span class="icon is-small">
+              <i class="ti ti-plus"></i>
+            </span>
+            <span>Create</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s" *ngFor="let student of studentList | async; let i = index" [attr.data-index]="i">
+    <student-card [student]="student" [index]="i" [togglers]="togglers"></student-card>
+  </div>
+</div>
+
+<div class="container p-4">
+  <nav class="pagination" role="navigation" aria-label="pagination">
+    <a class="pagination-previous" title="This is the first page" disabled>Previous</a>
+    <a class="pagination-next">Next</a>
+    <ul class="pagination-list">
+      <li>
+        <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+      </li>
+    </ul>
+  </nav>
+</div>

@@ -1,0 +1,88 @@
+<div class="card mb-5">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-64x64">
+          <img class="is-rounded" src="https://ui-avatars.com/api/?name={{student.firstname}}+{{student.lastname}}" alt="Placeholder image">
+        </figure>
+      </div>
+      <div class="media-content ml-2">
+        <p class="title is-4 pb-2">{{student.firstname}} {{student.lastname}}</p>
+        <div class="subtitle is-flex is-align-items-center">
+          <span class="is-size-6 is-flex is-align-items-center">
+            <i class="ti ti-gift has-text-grey is-size-5"></i>
+            <span class="ml-2">{{student.age}} years old</span>
+          </span>
+          <span class="ml-6 is-size-6 is-flex is-align-items-center">
+            <i class="ti ti-calendar-event has-text-grey is-size-5"></i>
+            <span class="ml-2">{{student.date}}</span>
+          </span>
+        </div>
+        <div class="buttons">
+          <button class="button is-outlined is-rounded" [ngClass]="{'is-primary' : student.sex === 'Male', 'is-danger' : student.sex === 'Female'}">
+            <span class="icon is-small">
+              <i class="ti" [ngClass]="{'ti-mars' : student.sex === 'Male', 'ti-venus' : student.sex === 'Female', 'ti-alien' : student.sex === ''}"></i>
+            </span>
+            <span>{{student.sex || "Unknown"}}</span>
+          </button>
+          <button class="button is-outlined is-rounded ml-2" [ngClass]="{'hidden' : checkBio()}">
+            <span class="icon">
+              <i class="ti ti-check"></i>
+            </span>
+            <span>Includes biography</span>
+          </button>
+        </div>
+      </div>
+      <div class="media-right">
+        <button class="button mr-2 is-success is-outlined" [disabled]="checkBio()" (click)="goToLink(fileURL)">
+          <span class="icon is-mall">
+            <i class="ti ti-download"></i>            
+          </span>
+          <span>Download</span>
+        </button>
+        <div class="dropdown is-right" [ngClass]="{'is-active' : togglers[index] === 1}">
+          <div class="dropdown-trigger">
+            <button class="button toggler" aria-haspopup="true" aria-controls="dropdown-menu" (click)="toggleDropdown(index)">
+              <span class="icon is-small">
+                <i class="ti ti-settings" aria-hidden="true"></i>
+              </span>
+              <span>Options</span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a class="dropdown-item" routerLink="edit" [state]="{student: student, isCreate: false}">
+                <span class="icon">
+                  <i class="ti ti-pencil"></i>
+                </span>
+                <span>Edit</span>
+              </a>
+              <a class="dropdown-item modal-button" (click)="toggleDeleteModal()">
+                <span class="icon">
+                  <i class="ti ti-x"></i>
+                </span>
+                <span>Delete</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="modal-fadeInScale-fs" class="modal modal-pos-top modal-fx-fadeInScale" [ngClass]="{'is-active': deleteModal}">
+  <div class="modal-background"></div>
+  <div class="modal-content modal-card is-tiny">
+      <header class="modal-card-head has-background-link has-text-white">
+          <p class="modal-card-title has-text-white">Delete student</p>
+          <button class="modal-button-close delete" aria-label="close" (click)="toggleDeleteModal()"></button>
+      </header>
+      <section class="modal-card-body">
+      Are you sure?
+      </section>
+      <footer class="modal-card-foot">
+          <button class="modal-button-close button is-link" (click)="deleteStudent()">Confirm</button>
+          <button class="modal-button-close button" (click)="toggleDeleteModal()">Cancel</button>
+      </footer>
+  </div>
+</div>

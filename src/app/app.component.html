@@ -1,0 +1,81 @@
+<nav class="navbar is-link" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item pr-5" href="#">
+        <span class="icon is-large">
+          <i class="ti ti-brand-android is-size-4"></i>
+        </span>
+        <span class="is-size-5"><b>STUDENT MANAGEMENT</b></span>
+      </a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" (click)="toggleNavbar()">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navbarBasicExample" class="navbar-menu" [ngClass]="{ 'is-active': navbarOpen }">
+      <div class="navbar-end">
+        <a class="navbar-item is-active pr-4" routerLink="students" routerLinkActive="is-active">
+          <span class="icon is-small mr-2">
+            <i class="ti ti-user"></i>
+          </span>
+          <span>Student List</span>
+        </a>
+        <a class="navbar-item pr-4" routerLink="reports" routerLinkActive="is-active">
+          <span class="icon is-small mr-2">
+            <i class="ti ti-chart-line"></i>
+          </span>
+          <span>Reports</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<nav class="breadcrumb p-2 has-background-white" aria-label="breadcrumbs">
+  <div class="container">
+    <ul>
+      <li class="no-hidden"><a routerLink="">App</a></li>
+      <li routerLinkActive="no-hidden" [ngClass]="{'is-active' : routeIsActive('/students') }"><a routerLink="students">Student List</a></li>
+      <li routerLinkActive="no-hidden" [ngClass]="{'is-active' : routeIsActive('/students/create') }"><a routerLink="students/create">Create student</a></li>
+      <li routerLinkActive="no-hidden" [ngClass]="{'is-active' : routeIsActive('/students/edit') }"><a routerLink="students/edit">Edit student</a></li>
+      <li routerLinkActive="no-hidden" [ngClass]="{'is-active' : routeIsActive('/students/create/upload') }"><a routerLink="students/create/upload">Upload</a></li>
+      <li routerLinkActive="no-hidden" [ngClass]="{'is-active' : routeIsActive('/reports') }"><a routerLink="reports">Reports</a></li>
+    </ul>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<footer class="footer mt-4 has-background-link has-text-white" style="padding-bottom: 2rem !important;">
+  <div class="content has-text-centered">
+    <p>
+      <strong class="has-text-white">Student Management</strong> by <a href="#" class="has-text-light  is-underlined">Isocrates De La Cruz</a>. The source code is licensed
+      <a href="http://opensource.org/licenses/mit-license.php" class="has-text-light  is-underlined">MIT</a>. Everything about this is Open Source.
+    </p>
+    <div class="is-flex">
+      <div class="buttons ml-auto mr-auto">
+        <button class="button is-outlined is-white">
+          <span class="icon is-small">
+            <i class="ti ti-brand-github"></i>
+          </span>
+          <span>Github</span>
+        </button>
+        <button class="button is-outlined is-white">
+          <span class="icon is-small">
+            <i class="ti ti-brand-facebook"></i>
+          </span>
+          <span>Facebook</span>
+        </button>
+        <button class="button is-outlined is-white">
+          <span class="icon is-small">
+            <i class="ti ti-brand-linkedin"></i>
+          </span>
+          <span>Linkedin</span>
+        </button>
+      </div>
+    </div>
+    <br/>
+    <p>- 2021 -</p>
+  </div>
+</footer>

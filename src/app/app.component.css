@@ -1,0 +1,11 @@
+.navbar-item.is-active{
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.breadcrumb ul li{
+  display: none;
+}
+.breadcrumb .no-hidden{
+  display: flex !important;
+}

@@ -1,0 +1,45 @@
+<div class="container pl-6 pt-4 pb-4">
+  <h1 class="title">Upload file</h1>
+  <h2 class="subtitle">Upload list of students</h2>
+  <form>
+    <div class="field">
+      <label class="label">File (XML)</label>      
+      <div class="file has-name is-boxed">
+        <label class="file-label">
+          <input class="file-input" type="file" name="resume" (change)="changeFileName($event)" accept="text/xml">
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="ti ti-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose a file…
+            </span>
+          </span>
+          <span class="file-name">
+            {{fileNameToUpload}}
+          </span>
+        </label>
+      </div>
+      <br />
+      <span>Please be sure is a valid XML file*</span>
+    </div>
+    <div class="buttons mt-4">
+      <div class="control mr-4">
+        <button type="button" class="button is-success is-fullwidth" (click)="onSubmit()">
+          <span class="icon">
+            <i class="ti ti-upload"></i>
+          </span>
+          <span>Upload</span>
+        </button>
+      </div>
+      <div class="control">
+        <button type="button" class="button is-danger is-fullwidth" (click)="goBack()">
+          <span class="icon">
+            <i class="ti ti-x"></i>
+          </span>
+          <span>Cancel</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
